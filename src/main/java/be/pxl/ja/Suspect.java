@@ -38,7 +38,8 @@ public class Suspect extends Part {
         this.age = age;
     }
 
-    public String toString(){
+    @Override
+    public String toString() {
         return title + ", " + this.getName();
     }
 }

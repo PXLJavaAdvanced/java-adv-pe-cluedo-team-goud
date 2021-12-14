@@ -31,3 +31,4 @@ public class Assembly<T extends Part> {
                 .collect(Collectors.toList());
     }
 }
+
