@@ -1,32 +1,33 @@
 package be.pxl.ja;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Assembly<T extends Part> {
-    private ArrayList<T> assemblyParts;
+    private List<T> assemblyParts;
 
-    public int getNumberOfParts(){
+    public Assembly(List<T> assemblyParts) {
+        this.assemblyParts = assemblyParts;
+    }
+
+    public int getNumberOfParts() {
         return assemblyParts.size();
     }
 
-    public Optional<Part> getPart(String name){
-        for (Part part : assemblyParts){
-            if (part.getName().equals(name)){
-                return Optional.of(part);
-            }
-        }
-        return Optional.empty();
+    public Optional<T> getPart(String name) {
+        return assemblyParts.stream() // loop over assemblyParts
+                .filter(assemblyPart -> name.equals(assemblyPart.getName())) // if name = assemblyPart name
+                .findFirst(); // return the first that matches the if statement
     }
 
-    public T getPart(int index){
+    public T getPart(int index) {
         return assemblyParts.get(index);
     }
 
-    public <T> getParts(){
-
+    public List<T> getParts() {
+        return assemblyParts.stream()
+                .sorted(Comparator.comparing(Part::getName))
+                .collect(Collectors.toList());
     }
 }
