@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class Mansion extends Assembly<Room> {
 
-    private static final String HALL = "hall";
+    private static final String HALL = "Hall";
 
     public Mansion(List<Room> assemblyParts) {
         super(assemblyParts);
