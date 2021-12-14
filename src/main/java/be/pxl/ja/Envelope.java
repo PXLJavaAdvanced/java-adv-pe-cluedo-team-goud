@@ -1,13 +1,20 @@
 package be.pxl.ja;
 
-public class Envelope {
-    private List<T>  secrets;
+import java.util.ArrayList;
+import java.util.List;
 
-    private void addSecret(){}
+public class Envelope<T> {
+    private final List<T> secrets = new ArrayList<>();
 
-    private T removeSecret(){}
+    private void addSecret(T secret) {
+        secrets.add(secret);
+    }
 
-    private boolean isSecret(){
-        return false;
+    private void removeSecret(T secret) {
+        secrets.remove(secret);
+    }
+
+    private boolean isSecret(T secret) {
+        return secrets.contains(secret);
     }
 }
