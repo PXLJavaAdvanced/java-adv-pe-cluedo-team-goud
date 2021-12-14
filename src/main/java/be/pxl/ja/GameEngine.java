@@ -2,7 +2,6 @@ package be.pxl.ja;
 
 import be.pxl.ja.command.HelpCommand;
 
-import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
