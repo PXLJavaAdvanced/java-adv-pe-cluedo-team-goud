@@ -14,6 +14,10 @@ public class GameEngine {
     private boolean murderSolved;
     private HelpCommand helpCommand = new HelpCommand();
 
+    public List<Room> rooms;
+    public List<Weapon> weapons;
+    public List<Suspect> suspects;
+
     public GameEngine(Scanner scanner) {
         this.scanner = scanner;
     }
@@ -24,9 +28,9 @@ public class GameEngine {
         File file = new File("src/main/resources/cluedo.txt");
         scanner = new Scanner(file); // todo: handle exception
 
-        List<Room> rooms = new ArrayList<>();
-        List<Weapon> weapons = new ArrayList<>();
-        List<Suspect> suspects = new ArrayList<>();
+        rooms = new ArrayList<>();
+        weapons = new ArrayList<>();
+        suspects = new ArrayList<>();
 
         String objectType = null;
 
