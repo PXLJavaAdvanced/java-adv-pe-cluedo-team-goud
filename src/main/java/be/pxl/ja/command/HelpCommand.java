@@ -4,7 +4,6 @@ public class HelpCommand implements Command<String> {
 
 	@Override
 	public void execute(String input) {
-		System.out.println("You can use following commands:");
 		System.out.println("SUSPECTS - gives you an overview of all possible suspects");
 		System.out.println("ROOMS - gives you an overview of all rooms");
 		System.out.println("WEAPONS - gives you an overview of all weapons");

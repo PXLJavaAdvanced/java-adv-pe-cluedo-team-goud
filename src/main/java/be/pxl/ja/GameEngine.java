@@ -10,7 +10,7 @@ public class GameEngine {
 
     private static final Random RANDOM = new Random();
     private Detective detective;
-    private final Scanner scanner;
+    private Scanner scanner;
     private boolean murderSolved;
     private HelpCommand helpCommand = new HelpCommand();
 
@@ -103,7 +103,6 @@ public class GameEngine {
         }
 
         Mansion mansion = new Mansion(new ArrayList<>(rooms));
-
     }
 
     public void start() {
@@ -117,8 +116,9 @@ public class GameEngine {
      *
      * @param command a command: goto, clue, describe,...
      */
+
     public void executeCommand(String command) {
-        helpCommand.execute(null);
+        helpCommand.execute(command);
     }
 
     public void printLocation() {
