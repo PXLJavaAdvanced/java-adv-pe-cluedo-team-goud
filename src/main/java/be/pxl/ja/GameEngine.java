@@ -1,6 +1,6 @@
 package be.pxl.ja;
 
-import be.pxl.ja.command.HelpCommand;
+import be.pxl.ja.command.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,7 +12,16 @@ public class GameEngine {
     private Detective detective;
     private Scanner scanner;
     private boolean murderSolved;
+
     private HelpCommand helpCommand = new HelpCommand();
+    private SuspectsCommand suspectsCommand = new SuspectsCommand();
+    private RoomsCommand roomsCommand = new RoomsCommand();
+    private WeaponsCommand weaponsCommand = new WeaponsCommand();
+    private ClueCommand clueCommand = new ClueCommand();
+    private GoToCommand goToCommand = new GoToCommand();
+    private DescribeCommand describeCommand = new DescribeCommand();
+    private UnlockCommand unlockCommand = new UnlockCommand();
+    private AccuseCommand accuseCommand = new AccuseCommand();
 
     public GameEngine(Scanner scanner) {
         this.scanner = scanner;
@@ -118,7 +127,23 @@ public class GameEngine {
      */
 
     public void executeCommand(String command) {
-        helpCommand.execute(command);
+        if ("SUSPECTS".equals(command)){
+            suspectsCommand.execute(command);
+        } else if ("ROOMS".equals(command)){
+            roomsCommand.execute(command);
+        } else if ("WEAPONS".equals(command)){
+            weaponsCommand.execute(command);
+        } else if ("DESCRIBE".equals(command)){
+            describeCommand.execute(command);
+        } else if ("UNLOCK".equals(command)){
+            unlockCommand.execute(command);
+        } else if (command.contains("CLUE")){ //voorlopig
+            clueCommand.execute(command);
+        } else if ("HELP".equals(command)){
+            helpCommand.execute(command);
+        } else if (command.contains("ACCUSE")){ //voorlopig
+            accuseCommand.execute(command);
+        }
     }
 
     public void printLocation() {
