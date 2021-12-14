@@ -1,5 +1,7 @@
 package be.pxl.ja;
 
+import java.util.Objects;
+
 public abstract class Part {
     private final String name;
 
@@ -7,16 +9,21 @@ public abstract class Part {
         this.name = name;
     }
 
-    public boolean equals(Object part){
-        return (this.toString().equals(part.toString()));
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Part part = (Part) o;
+        return Objects.equals(name, part.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     public String getName(){
         return name;
-    }
-
-    public int hashCode(){
-        return 0;
     }
 
     public String ToString(){

@@ -29,8 +29,4 @@ public class Assembly<T extends Part> {
     public <T> getParts(){
 
     }
-
-    public Assembly(TreeSet<T> assemblyParts) {
-        this.assemblyParts = assemblyParts;
-    }
 }
