@@ -23,9 +23,9 @@ public class GameEngine {
     private UnlockCommand unlockCommand = new UnlockCommand();
     private AccuseCommand accuseCommand = new AccuseCommand();
 
-    public List<Room> rooms;
-    public List<Weapon> weapons;
-    public List<Suspect> suspects;
+    public static List<Room> rooms;
+    public static List<Weapon> weapons;
+    public static List<Suspect> suspects;
 
     public GameEngine(Scanner scanner) {
         this.scanner = scanner;
