@@ -1,12 +1,13 @@
 package be.pxl.ja;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Detective {
 
     private final String name;
     private Room currentRoom;
-    private List<Part> collectedClues;
+    public List<Part> collectedClues = new ArrayList<>(1);
 
     public Detective(String name) {
         this.name = name;

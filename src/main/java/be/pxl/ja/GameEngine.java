@@ -27,6 +27,7 @@ public class GameEngine {
     public static List<Weapon> weapons;
     public static List<Suspect> suspects;
     public static Mansion mansion;
+    public static List<Part> parts;
 
     public GameEngine(Scanner scanner) {
         this.scanner = scanner;
@@ -41,6 +42,7 @@ public class GameEngine {
         rooms = new ArrayList<>();
         weapons = new ArrayList<>();
         suspects = new ArrayList<>();
+        parts = new ArrayList<>();
 
         String objectType = null;
 
@@ -54,11 +56,13 @@ public class GameEngine {
                     Room room = new Room(line);
                     if (!rooms.contains(room)) {
                         rooms.add(room);
+                        parts.add(room);
                     }
                 } else if ("#WEAPONS".equals(objectType)) {
                     Weapon weapon = new Weapon(line);
                     if (!weapons.contains(weapon)) {
                         weapons.add(weapon);
+                        parts.add(weapon);
                     }
                 } else if ("#SUSPECTS".equals(objectType)) {
                     String[] params = line.split(";");
@@ -74,6 +78,7 @@ public class GameEngine {
 
                     if (!suspects.contains(suspect)) {
                         suspects.add(suspect);
+                        parts.add(suspect);
                     }
                 }
             }
@@ -118,6 +123,7 @@ public class GameEngine {
         }
         */
 
+
         mansion = new Mansion(new ArrayList<>(rooms));
         detective.moveTo(mansion.getHall());
     }
@@ -146,7 +152,7 @@ public class GameEngine {
         } else if ("unlock".equals(command)){
             unlockCommand.execute(command);
         } else if (command.contains("clue")){ //voorlopig
-            clueCommand.execute(command);
+            clueCommand.execute(command.substring(5));
         } else if ("help".equals(command)){
             helpCommand.execute(command);
         } else if (command.contains("accuse")){ //voorlopig
