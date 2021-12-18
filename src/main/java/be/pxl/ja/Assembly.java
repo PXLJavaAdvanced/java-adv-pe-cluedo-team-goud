@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Assembly<T extends Part> {
-    private List<T> assemblyParts;
+    private final List<T> assemblyParts;
 
     public Assembly(List<T> assemblyParts) {
         this.assemblyParts = assemblyParts;

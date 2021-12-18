@@ -26,6 +26,7 @@ public class GameEngine {
     public static List<Room> rooms;
     public static List<Weapon> weapons;
     public static List<Suspect> suspects;
+    public static Mansion mansion;
 
     public GameEngine(Scanner scanner) {
         this.scanner = scanner;
@@ -117,8 +118,8 @@ public class GameEngine {
         }
         */
 
+        mansion = new Mansion(new ArrayList<>(rooms));
         detective.moveTo(rooms.get(0));
-        Mansion mansion = new Mansion(new ArrayList<>(rooms));
     }
 
     public void start() {
@@ -150,6 +151,8 @@ public class GameEngine {
             helpCommand.execute(command);
         } else if (command.contains("accuse")){ //voorlopig
             accuseCommand.execute(command);
+        } else if (command.contains("goto")){
+            goToCommand.execute(command.substring(5));
         }
     }
 
