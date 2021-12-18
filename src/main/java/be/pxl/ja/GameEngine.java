@@ -12,6 +12,7 @@ public class GameEngine {
     public static Detective detective;
     private Scanner scanner;
     private boolean murderSolved;
+    public static Envelope<Part> envelope;
 
     private HelpCommand helpCommand = new HelpCommand();
     private SuspectsCommand suspectsCommand = new SuspectsCommand();
@@ -102,16 +103,19 @@ public class GameEngine {
                 .findFirst()
                 .orElseThrow(() -> new CluedoException("No suspects found from game file"));
 
-        Envelope<Part> envelope = new Envelope<>();
+        envelope = new Envelope<>();
         envelope.addSecret(crimeScene);
         envelope.addSecret(murderWeapon);
         envelope.addSecret(murderer);
 
+        /*
         rooms.remove(crimeScene);
         weapons.remove(murderWeapon);
         suspects.remove(murderer);
 
-        /*
+         */
+
+/*
         for (Room room : rooms) {
             Weapon weapon = weapons.get(RANDOM.nextInt(weapons.size()));
             weapons.remove(weapon);
@@ -121,7 +125,9 @@ public class GameEngine {
             suspects.remove(suspect);
             room.setSuspect(suspect);
         }
-        */
+
+ */
+
 
 
         mansion = new Mansion(new ArrayList<>(rooms));
@@ -156,7 +162,7 @@ public class GameEngine {
         } else if ("help".equals(command)){
             helpCommand.execute(command);
         } else if (command.contains("accuse")){ //voorlopig
-            accuseCommand.execute(command);
+            accuseCommand.execute(command.substring(7));
         } else if (command.contains("goto")){
             goToCommand.execute(command.substring(5));
         }
