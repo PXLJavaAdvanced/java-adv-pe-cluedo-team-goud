@@ -1,6 +1,7 @@
 package be.pxl.ja.command;
 
 import be.pxl.ja.GameEngine;
+import be.pxl.ja.Part;
 import be.pxl.ja.Room;
 
 import java.util.Locale;

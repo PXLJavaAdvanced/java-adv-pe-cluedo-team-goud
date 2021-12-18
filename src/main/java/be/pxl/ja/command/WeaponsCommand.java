@@ -9,12 +9,16 @@ public class WeaponsCommand implements Command<String>{
     @Override
     public void execute(String input) {
         for (Weapon weapon : GameEngine.weapons){
+            boolean isClue = false;
             for (Part part : GameEngine.detective.collectedClues){
-                if (weapon.getName().equals(part.getName())){
+                if (weapon.getName().equalsIgnoreCase(part.getName())){
                     System.out.println(weapon.getName() + " 0");
+                    isClue = true;
                 }
             }
-            System.out.println(weapon.getName());
+            if (!isClue){
+                System.out.println(weapon.getName());
+            }
         }
     }
 }

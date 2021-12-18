@@ -4,19 +4,23 @@ import be.pxl.ja.GameEngine;
 import be.pxl.ja.Part;
 import be.pxl.ja.Room;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RoomsCommand implements Command<String>{
     @Override
     public void execute(String input) {
-        boolean clueNotAdded = true;
         for (Room room : GameEngine.rooms){
-            String roomName = room.getName();
+            boolean isClue = false;
             for (Part part : GameEngine.detective.collectedClues){
-                if (room.getName().equals(part.getName()) && clueNotAdded){
-                    roomName += " 0";
-                    clueNotAdded = false;
+                if (room.getName().equalsIgnoreCase(part.getName())){
+                    System.out.println(room.getName() + " 0");
+                    isClue = true;
                 }
             }
-            System.out.println(roomName);
+            if (!isClue){
+                System.out.println(room.getName());
+            }
         }
     }
 }

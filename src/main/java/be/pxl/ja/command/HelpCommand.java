@@ -1,5 +1,8 @@
 package be.pxl.ja.command;
 
+import be.pxl.ja.GameEngine;
+import be.pxl.ja.Part;
+
 public class HelpCommand implements Command<String> {
 
 	@Override
