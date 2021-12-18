@@ -115,7 +115,7 @@ public class GameEngine {
 
          */
 
-/*
+        /*
         for (Room room : rooms) {
             Weapon weapon = weapons.get(RANDOM.nextInt(weapons.size()));
             weapons.remove(weapon);

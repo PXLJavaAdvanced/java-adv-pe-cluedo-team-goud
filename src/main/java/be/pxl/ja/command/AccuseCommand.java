@@ -24,31 +24,28 @@ public class AccuseCommand implements Command<String>{
                 if (GameEngine.envelope.isSecret(weapon)){
                     System.out.println("It was not with a " + weapon.getName());
                 } else {
-                    System.out.println(weapon.getName() + " is inderdaad het moordwapen.");
+                    System.out.println(weapon.getName() + " is the murder weapon yes.");
                     correctWeapon = true;
                 }
             }
         }
 
-        /*
-        System.out.println(inputParts[0]);
         for (Suspect suspect : GameEngine.suspects){
-            if (inputParts[0].equalsIgnoreCase(suspect.getName())){
-                System.out.println(suspect.getName());
+            if (inputParts[0].equalsIgnoreCase(suspect.getName().strip())){
                 if (!GameEngine.envelope.isSecret(suspect)){
-                    System.out.println(suspect.getName() + " is not the killer.");
+                    System.out.println(suspect.getName().strip() + " is not the killer.");
                 } else {
-                    System.out.println(suspect.getName() + " is inderdaad de moordenaar.");
+                    System.out.println(suspect.getName().strip() + " is the killer indeed.");
                     correctSuspect = true;
                 }
             }
         }
 
-         */
 
 
 
-        if (correctWeapon && corrrectRoom){
+
+        if (correctWeapon && corrrectRoom && correctSuspect){
             System.out.println("Correct you won!");
         }
     }
