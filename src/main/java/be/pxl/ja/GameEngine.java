@@ -9,7 +9,7 @@ import java.util.*;
 public class GameEngine {
 
     private static final Random RANDOM = new Random();
-    private Detective detective;
+    public static Detective detective;
     private Scanner scanner;
     private boolean murderSolved;
 
@@ -105,6 +105,7 @@ public class GameEngine {
         weapons.remove(murderWeapon);
         suspects.remove(murderer);
 
+        /*
         for (Room room : rooms) {
             Weapon weapon = weapons.get(RANDOM.nextInt(weapons.size()));
             weapons.remove(weapon);
@@ -114,7 +115,9 @@ public class GameEngine {
             suspects.remove(suspect);
             room.setSuspect(suspect);
         }
+        */
 
+        detective.moveTo(rooms.get(0));
         Mansion mansion = new Mansion(new ArrayList<>(rooms));
     }
 
@@ -124,34 +127,34 @@ public class GameEngine {
     }
 
 
-    /**
+    /*
      * Handle the command.
      *
      * @param command a command: goto, clue, describe,...
      */
 
     public void executeCommand(String command) {
-        if ("SUSPECTS".equals(command)){
+        if ("suspects".equals(command)){
             suspectsCommand.execute(command);
-        } else if ("ROOMS".equals(command)){
+        } else if ("rooms".equals(command)){
             roomsCommand.execute(command);
-        } else if ("WEAPONS".equals(command)){
+        } else if ("weapons".equals(command)){
             weaponsCommand.execute(command);
-        } else if ("DESCRIBE".equals(command)){
+        } else if ("describe".equals(command)){
             describeCommand.execute(command);
-        } else if ("UNLOCK".equals(command)){
+        } else if ("unlock".equals(command)){
             unlockCommand.execute(command);
-        } else if (command.contains("CLUE")){ //voorlopig
+        } else if (command.contains("clue")){ //voorlopig
             clueCommand.execute(command);
-        } else if ("HELP".equals(command)){
+        } else if ("help".equals(command)){
             helpCommand.execute(command);
-        } else if (command.contains("ACCUSE")){ //voorlopig
+        } else if (command.contains("accuse")){ //voorlopig
             accuseCommand.execute(command);
         }
     }
 
     public void printLocation() {
-        System.out.println("You are in the " + detective.getCurrentRoom());
+        System.out.println("You are in the " + detective.getCurrentRoom().getName());
     }
 
 
