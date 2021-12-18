@@ -17,9 +17,9 @@ public class Room extends Part {
         this.locked = true;
     }
 
-    public String describe() {
+    public String describe(String input) {
         if (locked) {
-            throw new RoomLockedClientException();
+            return input + " is locked.";
         }
 
         StringBuilder description = new StringBuilder();

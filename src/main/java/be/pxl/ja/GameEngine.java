@@ -119,7 +119,7 @@ public class GameEngine {
         */
 
         mansion = new Mansion(new ArrayList<>(rooms));
-        detective.moveTo(rooms.get(0));
+        detective.moveTo(mansion.getHall());
     }
 
     public void start() {
