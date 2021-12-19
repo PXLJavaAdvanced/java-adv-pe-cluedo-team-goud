@@ -68,7 +68,7 @@ public class GameEngine {
                 } else if ("#SUSPECTS".equals(objectType)) {
                     String[] params = line.split(";");
 
-                    String name = params[0].substring(params[0].indexOf(" "));
+                    String name = params[0].substring(params[0].indexOf(" ")).strip();
                     String title = params[0].substring(0, params[0].indexOf(" "));
 
                     Suspect suspect = new Suspect(name);
@@ -108,27 +108,34 @@ public class GameEngine {
         envelope.addSecret(murderWeapon);
         envelope.addSecret(murderer);
 
-        /*
-        rooms.remove(crimeScene);
-        weapons.remove(murderWeapon);
-        suspects.remove(murderer);
-
-         */
-
-        /*
-        for (Room room : rooms) {
-            Weapon weapon = weapons.get(RANDOM.nextInt(weapons.size()));
-            weapons.remove(weapon);
-            room.setWeapon(weapon);
-
-            Suspect suspect = suspects.get(RANDOM.nextInt(suspects.size()));
-            suspects.remove(suspect);
-            room.setSuspect(suspect);
+        // overige wapens en suspects verdelen over de kamers
+        List<Weapon> roomWeapons = new ArrayList<>();
+        for (Weapon weapon : weapons){
+            if (!weapon.equals(murderWeapon)){
+                roomWeapons.add(weapon);
+            }
         }
 
- */
+        List<Suspect> roomSuspects = new ArrayList<>();
+        for (Suspect suspect : suspects){
+            if (!suspect.equals(murderer)){
+                roomSuspects.add(suspect);
+            }
+        }
 
+        for (Room room : rooms) {
+            if (roomWeapons.size() != 0){
+                Weapon weapon = roomWeapons.get(RANDOM.nextInt(roomWeapons.size()));
+                roomWeapons.remove(weapon);
+                room.setWeapon(weapon);
+            }
 
+            if (roomSuspects.size() != 0){
+                Suspect suspect = roomSuspects.get(RANDOM.nextInt(roomSuspects.size()));
+                roomSuspects.remove(suspect);
+                room.setSuspect(suspect);
+            }
+        }
 
         mansion = new Mansion(new ArrayList<>(rooms));
         detective.moveTo(mansion.getHall());
@@ -138,13 +145,6 @@ public class GameEngine {
         System.out.println("Who murdered Dr. Black? Where did the crime took place, and which weapon was used?");
         System.out.println("Type 'help' for information...");
     }
-
-
-    /*
-     * Handle the command.
-     *
-     * @param command a command: goto, clue, describe,...
-     */
 
     public void executeCommand(String command) {
         if ("suspects".equals(command)){
