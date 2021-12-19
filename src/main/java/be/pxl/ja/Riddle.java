@@ -1,5 +1,5 @@
 package be.pxl.ja;
 
-public class Riddle {
+public abstract class Riddle implements Predicate{
 
 }

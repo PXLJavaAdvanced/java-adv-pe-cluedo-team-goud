@@ -172,6 +172,7 @@ public class GameEngine {
                 String[] crackTheCodePieces = line.split(":");
                 answer = crackTheCodePieces[1].strip();
                 CrackTheCode crackTheCodeConstruct = new CrackTheCode(questions, answer);
+                crackTheCodes.add(crackTheCodeConstruct);
             } else {
                 questions[counter] = line;
                 counter++;

@@ -1,6 +1,5 @@
 package be.pxl.ja;
 
-
 public class Anagram extends Riddle{
     public String word;
     public String description;
@@ -25,6 +24,4 @@ public class Anagram extends Riddle{
     public String getAnswer() {
         return answer;
     }
-
-
 }
