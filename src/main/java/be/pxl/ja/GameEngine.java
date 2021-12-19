@@ -158,52 +158,24 @@ public class GameEngine {
         crackTheCodes = new ArrayList<>();
 
         scanner = new Scanner(crackTheCode);
+        int counter = 0;
+
         while(scanner.hasNextLine()){
             String line = scanner.nextLine();
-            int counter = 1;
 
-            String indexCode = "";
-            String questionOne = "";
-            String questionTwo = "";
-            String questionThree = "";
-            String questionFour = "";
-            String questionFive = "";
-            String answer = "";
+            String[] questions = new String[5];
+            String answer;
 
-            if ("#".equals(line.substring(0))){
-                indexCode = line;
-            }
-            /*
-            else if("ANSWER".equals(line.substring(0,5))){
+            if ("#".equals(line.substring(0, 1))){
+                counter = 0;
+            } else if (line.contains("ANSWER")){
                 String[] crackTheCodePieces = line.split(":");
                 answer = crackTheCodePieces[1].strip();
-            }
-
-            else{
-                switch(counter){
-                    case 1:
-                        questionOne = line;
-                        break;
-                    case 2:
-                        questionTwo = line;
-                        break;
-                    case 3:
-                        questionThree = line;
-                        break;
-                    case 4:
-                        questionFour = line;
-                    case 5:
-                        questionFive = line;
-                        counter = 0;
-                        break;
-                }
+                CrackTheCode crackTheCodeConstruct = new CrackTheCode(questions, answer);
+            } else {
+                questions[counter] = line;
                 counter++;
-
             }
-
-             */
-            CrackTheCode crackTheCodeConstruct = new CrackTheCode(indexCode, questionOne, questionTwo, questionThree,
-                    questionFour, questionFive, answer);
         }
 
         //---------------------------------------------------
