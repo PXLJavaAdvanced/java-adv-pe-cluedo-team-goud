@@ -29,6 +29,8 @@ public class GameEngine {
     public static List<Suspect> suspects;
     public static Mansion mansion;
     public static List<Part> parts;
+    public static List<Anagram> anagrams;
+    public static List<CrackTheCode> crackTheCodes;
 
     public GameEngine(Scanner scanner) {
         this.scanner = scanner;
@@ -38,7 +40,10 @@ public class GameEngine {
         murderSolved = false;
 
         File file = new File("src/main/resources/cluedo.txt");
-        scanner = new Scanner(file); // todo: handle exception
+        File anagram = new File("src/main/resources/anagrams.txt");
+        File crackTheCode = new File("src/main/resources/crackthecode.txt");
+        scanner = new Scanner(file);
+
 
         rooms = new ArrayList<>();
         weapons = new ArrayList<>();
@@ -139,6 +144,70 @@ public class GameEngine {
 
         mansion = new Mansion(new ArrayList<>(rooms));
         detective.moveTo(mansion.getHall());
+
+        anagrams = new ArrayList<>();
+        scanner = new Scanner(anagram);
+
+        while(scanner.hasNextLine()){
+            String line = scanner.nextLine();
+            String[] anagramPieces = line.split(";");
+            Anagram anagramConstruct = new Anagram(anagramPieces[0], anagramPieces[1], anagramPieces[2]);
+            anagrams.add(anagramConstruct);
+        }
+
+        crackTheCodes = new ArrayList<>();
+
+        scanner = new Scanner(crackTheCode);
+        while(scanner.hasNextLine()){
+            String line = scanner.nextLine();
+            int counter = 1;
+
+            String indexCode = "";
+            String questionOne = "";
+            String questionTwo = "";
+            String questionThree = "";
+            String questionFour = "";
+            String questionFive = "";
+            String answer = "";
+
+            if ("#".equals(line.substring(0))){
+                indexCode = line;
+            }
+            /*
+            else if("ANSWER".equals(line.substring(0,5))){
+                String[] crackTheCodePieces = line.split(":");
+                answer = crackTheCodePieces[1].strip();
+            }
+
+            else{
+                switch(counter){
+                    case 1:
+                        questionOne = line;
+                        break;
+                    case 2:
+                        questionTwo = line;
+                        break;
+                    case 3:
+                        questionThree = line;
+                        break;
+                    case 4:
+                        questionFour = line;
+                    case 5:
+                        questionFive = line;
+                        counter = 0;
+                        break;
+                }
+                counter++;
+
+            }
+
+             */
+            CrackTheCode crackTheCodeConstruct = new CrackTheCode(indexCode, questionOne, questionTwo, questionThree,
+                    questionFour, questionFive, answer);
+        }
+
+        //---------------------------------------------------
+        scanner.close(); // einde van init, alle code voor deze lijn
     }
 
     public void start() {
