@@ -11,7 +11,7 @@ public class GameEngine {
     private static final Random RANDOM = new Random();
     public static Detective detective;
     private Scanner scanner;
-    private boolean murderSolved;
+    public static boolean murderSolved;
     public static Envelope<Part> envelope;
 
     private HelpCommand helpCommand = new HelpCommand();
@@ -240,7 +240,6 @@ public class GameEngine {
     public void printLocation() {
         System.out.println("You are in the " + detective.getCurrentRoom().getName());
     }
-
 
     public boolean isMurderSolved() {
         return murderSolved;

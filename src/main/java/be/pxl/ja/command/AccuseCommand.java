@@ -41,6 +41,7 @@ public class AccuseCommand implements Command<String>{
 
         if (correctWeapon && corrrectRoom && correctSuspect){
             System.out.println("Correct you won!");
+            GameEngine.murderSolved = true;
         }
     }
 }
