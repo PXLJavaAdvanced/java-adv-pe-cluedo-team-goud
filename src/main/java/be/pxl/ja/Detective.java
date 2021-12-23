@@ -1,19 +1,26 @@
 package be.pxl.ja;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Detective {
 
-	private final String name;
+    private final String name;
+    private Room currentRoom;
+    public List<Part> collectedClues = new ArrayList<>(1);
 
-	public Detective(String name) {
-		this.name = name;
-	}
+    public Detective(String name) {
+        this.name = name;
+    }
 
-	public String getCurrentRoom() {
-		// TODO: update this method (and change return type!)
-		return "Hall";
-	}
+    public Room getCurrentRoom() {
+        return this.currentRoom;
+    }
 
-	public void moveTo() {
-		// TODO: add parameter and implement this method.
-	}
+    public void moveTo(Room nextRoom) {
+        if (nextRoom.equals(currentRoom)) {
+            throw new CluedoException("This move is not allowed");
+        }
+        currentRoom = nextRoom;
+    }
 }
